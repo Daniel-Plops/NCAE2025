@@ -7,7 +7,7 @@ write_enable=YES
 chroot_local_user=YES
 allow_writeable_chroot=YES
 ```
-SPECIFIC USERS ALLOWED
+## LIMITING SPECIFIC USERS
 
 userlist_enable=YES
 userlist_file=/etc/vsftpd.allowed_users
@@ -21,14 +21,14 @@ The idea is to only allow limited shells to users when using FTP and to prohibit
 echo "/usr/sbin/nologin" | sudo tee -a /etc/shells
 sudo usermod -s /usr/sbin/nologin ftpuser
 ```
-##LOGGING
+## LOGGING
 This sets up logging on FTP and sends all the logs to /var/log/vsftpd.log
 ```
 xferlog_enable=YES
 log_ftp_protocol=YES
 xferlog_file=/var/log/vsftpd.log
 ```
-JAIL
+## JAIL
 If we want to limit DoS attacks (which might not even be an issue but we have to ask), we can use fail2ban to limit attempts to access the ftp on failed attempts.
 ```
 sudo apt install fail2ban -y
